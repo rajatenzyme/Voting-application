@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head') %>
+  
+    <title>Voting My App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .party {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .party .name {
+            font-weight: bold;
+            font-size: 28px; 
+        }
+        .party .count {
+            color: #007bff;
+            font-size: 28px; 
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <%=  locals.user %>
+
+    <div class="container">
+        <h1>Live Vote Count</h1>
+        <div id="voteRecords">
+            <% voteRecord.forEach(function(record) { %>
+                <div class="party">
+                    <span class="name"><%= record.party %></span>
+                    <span class="count"><%= record.count %></span>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <!-- <div class="container">
+        <h1>Live Vote Count</h1>
+        <div class="party">
+            <span class="name">BJP</span>
+            <span class="count">4</span>
+        </div>
+        <div class="party">
+            <span class="name">INC</span>
+            <span class="count">3</span>
+        </div>
+    </div> -->
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>

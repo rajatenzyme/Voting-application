@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head') %>
+  
+    <title>Cast Vote</title>
+    <style>
+        #votingForm {
+            font-family: Arial, sans-serif;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+    
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+    
+        button {
+            margin-top: 100px;
+            margin-left: 700px;
+            position:absolute;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <!-- <%= locals.candidates %>
+
+    <%= locals.user %>  -->
+
+    <form id="votingForm" action="/candidate/vote/<%= locals.candidateId %>" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Party</th>
+                    <th>Vote</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% candidates.forEach(function(candidate) { %>
+                    <tr>
+                        <td><%= candidate.name %></td>
+                        <td><%= candidate.party %></td>
+                        <td><input type="radio" name="candidateId" value="<%= candidate._id %>"></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        
+        <button type="button" onclick="submitVote()">Submit Vote</button>
+    </form>
+
+    <%- include('./partials/scripts') %>
+
+    <script>
+        function submitVote() {
+            var form = document.getElementById("votingForm");
+            var selectedCandidateId;
+
+            // Loop through radio buttons to find the selected one
+            var radioButtons = form.elements["candidateId"];
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    selectedCandidateId = radioButtons[i].value;
+                    break;
+                }
+            }
+
+            if (selectedCandidateId) {
+                var url = "/candidate/vote/" + selectedCandidateId;
+                form.action = url;
+                form.submit();
+            } else {
+                alert("Please select a candidate.");
+            }
+        }
+    </script>
+
+</body>
+</html>

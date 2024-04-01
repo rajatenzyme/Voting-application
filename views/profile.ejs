@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head') %>
+  
+    <title>Voting My App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .profile-info p strong {
+            font-weight: bold;
+        }
+        .profile-info p.email {
+            color: #007bff;
+        }
+        .profile-info p.role {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-info">
+            <p><strong>Name:</strong> <%= user.name %></p>
+            <p class="email"><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Aadhar Card Number:</strong> <%= user.aadharCardNumber %></p>
+            <p><strong>Address:</strong> <%= user.address %></p>
+            <p><strong>Age:</strong> <%= user.age %></p>
+            <p class="role"><strong>Role:</strong> <%= user.role %></p>
+        </div>
+    </div>
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>
