@@ -60,15 +60,12 @@
         </div>
     </div>
 
-    <% if (locals.user.role =='admin') { %>
+    <% if (locals.user?.role =='admin') { %>
         <div class="d-flex justify-content-center mt-4">
             <a href="/candidate/add-new-candidate" class="btn btn-primary btn-sm">Add New Candidate (Admin Only)</a>
         </div>
     <% } %>
     
-    
-
-    <!-- <%= locals.user.role %> -->
 
     <%- include('./partials/scripts') %>
 </body>

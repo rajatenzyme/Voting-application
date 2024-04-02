@@ -88,8 +88,6 @@ router.get("/vote/count/", async (req, res) => {
       };
     });
 
-    // console.log(voteRecord);
-    // return res.status(200).json(voteRecord);
     return res.render("scorecard", { voteRecord: voteRecord, user: user });
   } catch (err) {
     console.log(err);
@@ -113,7 +111,8 @@ router.get("/", async (req, res) => {
 
 
 router.get("/add-new-candidate", async (req, res) => {
-    return res.render("addNewCandidate");
+    const user = await User.findById(req.user?.id);
+    return res.render("addNewCandidate", { user: user});
 });
 
 // Adding a new candidate
