@@ -4,6 +4,8 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
+const methodOverride = require('method-override');
+
 
 const Candidate = require("./models/candidate");
 const db = require("./db");
@@ -27,6 +29,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(path.resolve("./public")));
 app.use(express.static(path.resolve("./views")));
+app.use(methodOverride('_method'));
+
 
 const User = require('./models/user');
 

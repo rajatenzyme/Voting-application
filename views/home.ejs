@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('./partials/head') %>
   
-    <title>Voting | My App</title>
+    <title>Voting Application | Vote your favourite political party</title>
+    <style>
+        .container {
+        display: flex;
+        justify-content: center; /* Horizontally center the content */
+        align-items: center; /* Vertically center the content */
+    }
+    </style>
 </head>
 <body>
     <%- include('./partials/nav') %>
 
-
+    <div class="container mt-4 ">
+        <img src="/images/vote.png" width="750px" height="600px" class="center-image">
+    </div>
 
     <%- include('./partials/scripts') %>
 </body>

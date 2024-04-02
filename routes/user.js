@@ -113,12 +113,27 @@ router.get('/logout', function(req, res) {
 router.get('/profile', jwtAuthMiddleware, async (req, res) => {
     try{
         const user = await User.findById(req.user?.id);
+        if(!user)   return res.redirect('/');
         return res.render('profile', {user : user})  ;
         // res.status(200).json({user});
     }catch(err){
         console.error(err);
         return res.redirect('/');
-        res.status(500).json({ error: 'Internal Server Error' });
+        // res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+});
+
+router.get('/profile/password', jwtAuthMiddleware, async (req, res) => {
+    try{
+        const user = await User.findById(req.user?.id);
+        if(!user)   return res.redirect('/');
+        return res.render('changePassword', {user : user})  ;
+        // res.status(200).json({user});
+    }catch(err){
+        console.error(err);
+        return res.redirect('/');
+        // res.status(500).json({ error: 'Internal Server Error' });
     }
 
 });
@@ -132,7 +147,9 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
 
         // Check if currentPassword and newPassword are present in the request body
         if (!currentPassword || !newPassword) {
-            return res.status(400).json({ error: 'Both currentPassword and newPassword are required' });
+            const alertScript = `<script>alert("Both current Password and new Password is required");window.history.back();</script>`;
+            return res.status(400).send(alertScript);
+            // return res.status(400).json({ error: 'Both currentPassword and newPassword are required' });
         }
 
 
@@ -141,7 +158,9 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
 
         // If user does not exist or password does not match, return error
         if(!user || !(await user.comparePassword(currentPassword))){
-            return res.status(401).json({error: 'Invalid Current Password'});
+            const alertScript = `<script>alert("Invalid Current Password");window.history.back();</script>`;
+            return res.status(400).send(alertScript);
+            // return res.status(401).json({error: 'Invalid Current Password'});
         }
 
         // else update the password with the new password
@@ -151,7 +170,9 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
 
         console.log('password updated');
 
-        res.status(200).json({user});
+        // res.status(200).json({user});
+        const alertScript = `<script>alert("Password updated");window.history.back();</script>`;
+        return res.status(200).send(alertScript);
     }catch(err){
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });

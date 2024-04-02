@@ -20,7 +20,7 @@ const jwtAuthMiddleware = (req, res, next) => {
     // console.log(req.cookies["token"])
 
     const token = req.cookies["token"]
-    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MGFhMzc1Zjk5MjdmM2EzN2M0MTNlMyIsImlhdCI6MTcxMjAwMDk1NSwiZXhwIjoxNzEyMDMwOTU1fQ.8lqT7GDAa3UXIpl-XuNt8UVSfSAZk79LdI-3_Q5yQkU"
+    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MGE1MmI0YjQyNWZmMGQzYmU5MDAxNSIsImlhdCI6MTcxMjA0NTcwMCwiZXhwIjoxNzEyMDc1NzAwfQ.fSmquSV9zZTBbQbl-YUD3fweImv06JA3OZ1I5bL4Aro"
 
     if(!token){
         return next();

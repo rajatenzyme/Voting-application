@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head') %>
+    <title>Voting Application | New Candidate Registration (Admin Only) </title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container">
+        <form action="/candidate" method="post">
+            <div class="mb-3 mt-4">
+              <label for="name" class="form-label">Candidate Full Name</label>
+              <input type="text" class="form-control" id="name" aria-describedby="name" name="name"> 
+
+              <label for="party" class="form-label">Candidate's Party</label>
+              <input type="text" class="form-control" id="party" aria-describedby="party" name="party"> 
+
+              <label for="aadharCardNumber" class="form-label">Candidate's Aadhar Card Number</label>
+              <input type="text" class="form-control" id="aadharCardNumber" aria-describedby="aadharCardNumber" name="aadharCardNumber"> 
+              
+              <label for="age" class="form-label">Candidate's Age</label>
+              <input type="number" class="form-control" id="age" aria-describedby="age" name="age"> 
+
+              <label for="exampleInputEmail1" class="form-label">Candidate's Email address</label>
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+            </div>
+
+      
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+
+
+
+    <!-- {
+            {
+                "name": "Rahul Gandhi",
+                "party": "INC",
+                "age": 51,
+                "email": "rahul@example.com",
+                "aadharCardNumber": "234528792012"
+            }
+    } -->
+
+
+    
+
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>
