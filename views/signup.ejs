@@ -12,28 +12,28 @@
         <form action="/user/signup" method="post">
             <div class="mb-3 mt-4">
               <label for="name" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="name" aria-describedby="name" name="name"> 
+              <input type="text" class="form-control" id="name" aria-describedby="name" name="name" required> 
 
               <label for="mobile" class="form-label">Mobile Number</label>
-              <input type="text" class="form-control" id="mobile" aria-describedby="mobile" name="mobile"> 
+              <input type="text" class="form-control" id="mobile" aria-describedby="mobile" name="mobile" required> 
 
               <label for="aadharCardNumber" class="form-label">Aadhar Card Number</label>
-              <input type="text" class="form-control" id="aadharCardNumber" aria-describedby="aadharCardNumber" name="aadharCardNumber"> 
+              <input type="text" class="form-control" id="aadharCardNumber" aria-describedby="aadharCardNumber" name="aadharCardNumber" required> 
               
               <label for="age" class="form-label">Age</label>
-              <input type="number" class="form-control" id="age" aria-describedby="age" name="age"> 
+              <input type="number" class="form-control" id="age" aria-describedby="age" name="age" min="18" max="100" required> 
 
               <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" aria-describedby="address" name="address"> 
+              <input type="text" class="form-control" id="address" aria-describedby="address" name="address" required> 
 
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" name="password">
+              <input type="password" class="form-control" id="password" name="password" minlength="8" maxlength ="16" required>
             </div>
       
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -12,19 +12,19 @@
         <form action="/candidate" method="post">
             <div class="mb-3 mt-4">
               <label for="name" class="form-label">Candidate Full Name</label>
-              <input type="text" class="form-control" id="name" aria-describedby="name" name="name"> 
+              <input type="text" class="form-control" id="name" aria-describedby="name" name="name" minlength="3"required> 
 
               <label for="party" class="form-label">Candidate's Party</label>
-              <input type="text" class="form-control" id="party" aria-describedby="party" name="party"> 
+              <input type="text" class="form-control" id="party" aria-describedby="party" name="party" required> 
 
               <label for="aadharCardNumber" class="form-label">Candidate's Aadhar Card Number</label>
-              <input type="text" class="form-control" id="aadharCardNumber" aria-describedby="aadharCardNumber" name="aadharCardNumber"> 
+              <input type="text" class="form-control" id="aadharCardNumber" aria-describedby="aadharCardNumber" name="aadharCardNumber" required> 
               
               <label for="age" class="form-label">Candidate's Age</label>
-              <input type="number" class="form-control" id="age" aria-describedby="age" name="age"> 
+              <input type="number" class="form-control" id="age" aria-describedby="age" name="age" min="18" max="100"required> 
 
               <label for="exampleInputEmail1" class="form-label">Candidate's Email address</label>
-              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 
             </div>

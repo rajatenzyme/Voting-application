@@ -95,23 +95,28 @@ router.get("/vote/count/", async (req, res) => {
   }
 });
 
-// Get List of all candidates with only name and party fields
-router.get("/", async (req, res) => {
-  try {
-    // Find all candidates and select only the name and party fields, excluding _id
-    const candidates = await Candidate.find({}, "name party -_id");
+// // Get List of all candidates with only name and party fields
+// router.get("/", async (req, res) => {
+//   try {
+//     // Find all candidates and select only the name and party fields, excluding _id
+//     const candidates = await Candidate.find({}, "name party -_id");
 
-    // Return the list of candidates
-    res.status(200).json(candidates);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+//     // Return the list of candidates
+//     res.status(200).json(candidates);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 
 router.get("/add-new-candidate", async (req, res) => {
     const user = await User.findById(req.user?.id);
+    // console.log(user);
+    if(!user) {
+      const alertScript = `<script>alert("You are unauthorized for this action!!");window.history.back();</script>`;
+      return res.status(200).send(alertScript);
+    }
     return res.render("addNewCandidate", { user: user});
 });
 
@@ -121,17 +126,43 @@ router.post("/", jwtAuthMiddleware, async (req, res) => {
     if (!(await checkAdminRole(req.user.id)))
       return res.status(403).json({ message: "user does not have admin role" });
 
-    const body = req.body;
+    const data = req.body;
+    // console.log("data: " + JSON.stringify(data));
 
-    const newCandidate = new Candidate(body);
+     // Check if candidate is added by admin
+     if (data.role === 'admin') {
+      return res.status(400).render('addNewCandidate', { error: 'Unauthorized action!' });
+     }
+
+     // Validate Aadhar Card Number must have exactly 12 digit
+     if (!/^\d{12}$/.test(data.aadharCardNumber)) {
+        return res.status(400).render('addNewCandidate', { error: 'Aadhar Card Number must be of exactly 12 digits' });
+     }
+
+     // Check if a user with the same Aadhar Card Number already exists
+     const existingUser = await Candidate.findOne({ aadharCardNumber: data.aadharCardNumber});
+     if (existingUser) {
+      return res.status(400).render('addNewCandidate', { error: 'Candidate with the same Aadhar Card Number already exists!' });
+     }
+
+     // Check if a user with the same email already exists
+     const existingUserEmail = await Candidate.findOne({ email: data.email });
+     if (existingUserEmail) {
+      return res.status(400).render('addNewCandidate', { error: 'Candidate with the same email already exists!' });
+     }
+
+    const newCandidate = new Candidate(data);
 
     // Save the newCandidate to the database
     const response = await newCandidate.save();
     // console.log("data saved");
-    res.status(200).json({ response: response });
+  
+    return res.status(200).render('addNewCandidate', { error: 'Candidate Added Successfully!' });
+      // return res.status(400).send(alertScript);
+    // res.status(200).json({ response: response });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).render('addNewCandidate', { error: 'Internal Server Error!' });
   }
 });
 
