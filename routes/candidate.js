@@ -151,6 +151,11 @@ router.post("/", jwtAuthMiddleware, async (req, res) => {
       return res.status(400).render('addNewCandidate', { error: 'Candidate with the same email already exists!' });
      }
 
+     const existingUserParty = await Candidate.findOne({party: data.party});
+     if (existingUserParty) {
+      return res.status(400).render('addNewCandidate', { error: 'Candidate with the same party already exists!' });
+     }
+
     const newCandidate = new Candidate(data);
 
     // Save the newCandidate to the database
