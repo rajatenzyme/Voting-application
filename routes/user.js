@@ -69,7 +69,7 @@ router.post('/login', async (req, res) => {
     try{
         // Get aadharCardNumber and password from request body
         const {aadharCardNumber, password} = req.body;
-        console.log(aadharCardNumber, password);
+        // console.log(aadharCardNumber, password);
 
         // Check if aadharCardNumber or password is missing
         if (!aadharCardNumber || !password) {
@@ -92,8 +92,10 @@ router.post('/login', async (req, res) => {
         }
 
         const token = generateToken(payload);
+        // console.log(token)
 
-        return res.cookie('token', token).redirect('/');
+        // return res.cookie('token', token).redirect('/');
+        return res.cookie('token', token).render('home', {user : user})
 
         // return res.json({token});
         

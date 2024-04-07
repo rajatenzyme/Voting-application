@@ -4,6 +4,11 @@
 
 This Node.js application is a simple voting system designed to facilitate voting processes. It allows users to sign up, log in, vote for candidates, view candidate lists and their vote counts, and update their profile details including password. The application also includes an admin feature to manage candidates.
 
+## API Routing
+<img src="VotingApp.png" width="400" height="300" />
+
+
+
 ## Installation
 
 To install and run the application, follow these steps:
@@ -29,12 +34,12 @@ To install and run the application, follow these steps:
 
 ### Voting:
 
-- `/candidates`: **GET** - Get the list of candidates. ✅
+- `/candidate`: **GET** - Get the list of candidates. ✅
 - `/vote/:candidateId`: **POST** - Vote for a specific candidate. ✅
 
 ### Vote Counts:
 
-- `/vote/counts`: **GET** - Get the list of candidates sorted by their vote counts. ✅
+- `/vote/count`: **GET** - Get the list of candidates sorted by their vote counts. ✅
 
 ### User Profile:
 
@@ -43,9 +48,9 @@ To install and run the application, follow these steps:
 
 ### Admin Candidate Management:
 
-- `/candidates`: **POST** - Create a new candidate. ✅
-- `/candidates/:candidateId`: **PUT** - Update an existing candidate.
-- `/candidates/:candidateId`: **DELETE** - Delete a candidate from the list.
+- `/candidate`: **POST** - Create a new candidate. ✅
+- `/candidate/:candidateId`: **PUT** - Update an existing candidate.
+- `/candidate/:candidateId`: **DELETE** - Delete a candidate from the list.
 
 ## Note
 

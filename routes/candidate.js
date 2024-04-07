@@ -22,6 +22,7 @@ const checkAdminRole = async (userID) => {
 
 router.get("/castvote", async (req, res) => {
   const candidate = await Candidate.find({}, "name party _id");
+  // console.log("Hi Candidates",candidate);
   const user = await User.find({ _id: req.user?.id });
 
   return res.render("castVote", {
@@ -49,9 +50,7 @@ router.post("/vote/:candidateId", jwtAuthMiddleware, async (req, res) => {
     if (user.role == "admin") {
       const alertScript = `<script>alert("admin is not allowed to cast a vote");window.history.back();</script>`;
       return res.status(403).send(alertScript);
-      // return res
-      //   .status(403)
-      //   .json({ message: "admin is not allowed to cast a vote" });
+      // return res.status(403).render("castVote", { error: 'admin is not allowed to cast a vote' });
     }
     if (user.isVoted) {
       const alertScript = `<script>alert("You have already voted");window.history.back();</script>`;
@@ -77,23 +76,7 @@ router.post("/vote/:candidateId", jwtAuthMiddleware, async (req, res) => {
 });
 
 
-router.get("/vote/count/", async (req, res) => {
-  try {
-    const candidates = await Candidate.find();
-    const user = await User.findById(req.user?.id);
-    const voteRecord = candidates.map((data) => {
-      return {
-        party: data.party,
-        count: data.votes.length,
-      };
-    });
 
-    return res.render("scorecard", { voteRecord: voteRecord, user: user });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 // // Get List of all candidates with only name and party fields
 // router.get("/", async (req, res) => {

@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
               <li class="nav-item">
-                  <a class="nav-link" href="/candidate/vote/count/">Scoreboard</a>
+                  <a class="nav-link" href="/vote/count/">Scoreboard</a>
               </li>
               <% if (locals.user && Object.keys(locals.user).length > 0) { %>
               <li class="nav-item">
@@ -52,4 +52,6 @@
   </div>
 <% } %>
 
+
+<!-- <%= JSON.stringify(locals.user) %> -->
 

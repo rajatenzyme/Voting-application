@@ -23,6 +23,7 @@ const jwtAuthMiddleware = (req, res, next) => {
     // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MGE1MmI0YjQyNWZmMGQzYmU5MDAxNSIsImlhdCI6MTcxMjA0NTcwMCwiZXhwIjoxNzEyMDc1NzAwfQ.fSmquSV9zZTBbQbl-YUD3fweImv06JA3OZ1I5bL4Aro"
 
     if(!token){
+        // console.log("ihooh")
         return next();
     }
 
