@@ -5,7 +5,7 @@
 This Node.js application is a simple voting system designed to facilitate voting processes. It allows users to sign up, log in, vote for candidates, view candidate lists and their vote counts, and update their profile details including password. The application also includes an admin feature to manage candidates.
 
 ## API Routing
-<img src="VotingApp.png" width="400" height="300" />
+<img src="VotingApp.png" width="550" height="500" />
 
 
 
