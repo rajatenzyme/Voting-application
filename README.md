@@ -49,8 +49,8 @@ To install and run the application, follow these steps:
 ### Admin Candidate Management:
 
 - `/candidate`: **POST** - Create a new candidate. ✅
-- `/candidate/:candidateId`: **PUT** - Update an existing candidate.
-- `/candidate/:candidateId`: **DELETE** - Delete a candidate from the list.
+- `/candidate/:candidateId`: **PUT** - Update an existing candidate. ✅
+- `/candidate/:candidateId`: **DELETE** - Delete a candidate from the list. ✅
 
 ## Note
 
